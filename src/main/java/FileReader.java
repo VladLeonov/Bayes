@@ -8,7 +8,7 @@ abstract class FileReader {
 
     private FileReader() {}
 
-    private static Message readData(File file) {
+    private static Message readMessage(File file) {
 
         ArrayList<Integer> title = new ArrayList<>();
         ArrayList<Integer> body = new ArrayList<>();
@@ -41,7 +41,7 @@ abstract class FileReader {
         return new Message(file.getName().contains("spmsg"), title, body);
     }
 
-    static ArrayList<ArrayList<Message>> readAllData() {
+    static ArrayList<ArrayList<Message>> readAllMessages() {
 
         ArrayList<ArrayList<Message>> allData = new ArrayList<>();
         ArrayList<Message> dataGroup;
@@ -52,7 +52,7 @@ abstract class FileReader {
 
             for (File file : folder.listFiles()) {
 
-                dataGroup.add(readData(file));
+                dataGroup.add(readMessage(file));
             }
 
             allData.add(dataGroup);
