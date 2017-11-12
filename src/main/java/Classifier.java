@@ -82,7 +82,7 @@ class Classifier {
             wordsProbabilities.put(word, probabilityBuffer);
         }
 
-        probabilityBorder = 0.5;//TODO
+        probabilityBorder = 0.9999992;//TODO
     }
 
     private double check(Message message) {
@@ -98,8 +98,8 @@ class Classifier {
 
                 pBuffer = wordsProbabilities.get(word);
 
-                p1 *= pBuffer;
-                p2 *= 1 - pBuffer;
+                p1 *= 2 * pBuffer;
+                p2 *= 2 - 2 * pBuffer;
             }
         }
 
