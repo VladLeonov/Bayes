@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 class ContingencyTable {
 
-    double TP = 0, FP = 0, FN = 0, TN = 0;
+    private double TP = 0, FN = 0, TN = 0;
+    double FP = 0;
 
     ContingencyTable() {}
 

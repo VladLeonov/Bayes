@@ -46,11 +46,15 @@ abstract class FileReader {
         ArrayList<ArrayList<Message>> allData = new ArrayList<>();
         ArrayList<Message> dataGroup;
 
-        for (File folder : new File(System.getProperty("user.dir") + "/src/main/res").listFiles()) {
+        File[] folders = new File(System.getProperty("user.dir") + "/src/main/res").listFiles();
+        File[] files;
+
+        for (File folder : folders != null ? folders : new File[0]) {
 
             dataGroup = new ArrayList<>();
 
-            for (File file : folder.listFiles()) {
+            files = folder.listFiles();
+            for (File file : files != null ? files : new File[0]) {
 
                 dataGroup.add(readMessage(file));
             }

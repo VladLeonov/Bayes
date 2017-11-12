@@ -40,13 +40,12 @@ public class Form  extends JFrame {
         }
 
         System.out.println("F measure = " + contingencyTable.getFMeasure());
-        System.out.println("FP = " + contingencyTable.FP);
-        System.out.println("FP part = " + contingencyTable.FP / contingencyTable.getAllCases());
+        System.out.println("FP part = " + (int) contingencyTable.FP + " / " + (int) contingencyTable.getAllCases());
         System.out.println("Probability Border = " + classifier.probabilityBorder);
 
         for (Pair<Message, Double> result : checkResults) {
 
-            //System.out.println((result.getKey().isSpam ? "Spam | " : "Ham  | ") + result.getValue());
+            System.out.println((result.getKey().isSpam ? "Spam | " : "Ham  | ") + result.getValue());
         }
 
         adjustDisplay();
@@ -61,7 +60,7 @@ public class Form  extends JFrame {
         setTitle("Title");
         setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(true);
+        //setVisible(true);
     }
 
     public static void main(String[] args) throws InterruptedException {

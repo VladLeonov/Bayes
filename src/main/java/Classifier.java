@@ -6,8 +6,6 @@ import java.util.HashSet;
 
 class Classifier {
 
-    private static double minimumProbability = 0.001;
-    private double spamProbability, hamProbability;
     double probabilityBorder;
     private HashMap<Integer, Double> wordsProbabilities = new HashMap<>();
 
@@ -28,8 +26,8 @@ class Classifier {
             words.addAll(message.body);
         }
 
-        spamProbability = (double) spamNumber / (spamNumber + hamNumber);
-        hamProbability = (double) hamNumber / (spamNumber + hamNumber);
+        double spamProbability = (double) spamNumber / (spamNumber + hamNumber);
+        double hamProbability = (double) hamNumber / (spamNumber + hamNumber);
 
         HashMap<Integer, Integer> spamCounter = new HashMap<>(), hamCounter = new HashMap<>();
 
@@ -63,6 +61,7 @@ class Classifier {
         wordsProbabilities.clear();
 
         double wordSpamProbability, wordHamProbability, probabilityBuffer;
+        final double minimumProbability = 0.001;
         for (int word : spamCounter.keySet()) {
 
             wordSpamProbability = (double) spamCounter.get(word) / spamNumber;
