@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
-public abstract class FileReader {
+abstract class FileReader {
 
     private FileReader() {}
 
-    public static Message readData(String fileName) {
+    private static Message readData(File file) {
 
         ArrayList<Integer> title = new ArrayList<>();
         ArrayList<Integer> body = new ArrayList<>();
 
         try {
 
-            Scanner fileScanner = new Scanner(new File(fileName)).useLocale(Locale.US);
+            Scanner fileScanner = new Scanner(file).useLocale(Locale.US);
 
             Scanner lineScanner = new Scanner(fileScanner.nextLine());
             lineScanner.next();
@@ -38,6 +38,26 @@ public abstract class FileReader {
             e.printStackTrace();
         }
 
-        return new Message(fileName.contains("spmsg"), title, body);
+        return new Message(file.getName().contains("spmsg"), title, body);
+    }
+
+    static ArrayList<ArrayList<Message>> readAllData() {
+
+        ArrayList<ArrayList<Message>> allData = new ArrayList<>();
+        ArrayList<Message> dataGroup;
+
+        for (File folder : new File(System.getProperty("user.dir") + "/src/main/res").listFiles()) {
+
+            dataGroup = new ArrayList<>();
+
+            for (File file : folder.listFiles()) {
+
+                dataGroup.add(readData(file));
+            }
+
+            allData.add(dataGroup);
+        }
+
+        return allData;
     }
 }
