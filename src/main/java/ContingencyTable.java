@@ -6,6 +6,8 @@ class ContingencyTable {
 
     double TP = 0, FP = 0, FN = 0, TN = 0;
 
+    ContingencyTable() {}
+
     ContingencyTable(ArrayList<Pair<Message, Double>> probabilities, double probabilityBorder) {
 
         for (Pair<Message, Double> probability : probabilities) {
@@ -46,5 +48,10 @@ class ContingencyTable {
         double precision = (precision0 + precision1) / 2;
 
         return  2 * (recall * precision) / (recall + precision);
+    }
+
+    double getAllCases() {
+
+        return TP + FP + FN + TN;
     }
 }
